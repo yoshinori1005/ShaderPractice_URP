@@ -176,6 +176,7 @@ Shader "Unlit/UnlitLambert"
                 VertexPositionInputs positionInputs = GetVertexPositionInputs(IN.positionOS.xyz);
                 half mask = SAMPLE_TEXTURE2D_LOD(_OutlineMask, sampler_OutlineMask, IN.uv, 1.0).r;
                 OUT.positionCS = positionInputs.positionCS + float4(normalCS.xy * _OutlineWidth * mask, 0, 0);
+                OUT.uv = IN.uv;
 
                 return OUT;
             }
