@@ -25,7 +25,7 @@ Shader "Unlit/URPUnlit"
 
             Blend SrcAlpha OneMinusSrcAlpha
             ZWrite Off
-            Cull Front
+            Cull Back
 
             // URP は CGPROGRAM から HLSLPROGRAM に移行したため、HLSLPROGRAM ~ ENDHLSL
             HLSLPROGRAM
