@@ -41,11 +41,11 @@ Shader "Unlit/SliceScroll"
                 float2 uv : TEXCOORD0;
             };
 
-            Varyings vert (Attributes v)
+            Varyings vert (Attributes i)
             {
                 Varyings o;
-                o.positionHCS = TransformObjectToHClip(v.positionOS.xyz);
-                o.uv = v.uv + _Time.y / 2 * _ScrollSpeed;
+                o.positionHCS = TransformObjectToHClip(i.positionOS.xyz);
+                o.uv = i.uv + _Time.y / 2 * _ScrollSpeed;
                 return o;
             }
 

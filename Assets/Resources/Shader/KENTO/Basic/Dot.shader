@@ -37,11 +37,11 @@ Shader "Unlit/Dot"
                 float3 worldPos : TEXCOORD0;
             };
 
-            Varyings vert (Attributes v)
+            Varyings vert (Attributes i)
             {
                 Varyings o;
-                o.worldPos = TransformObjectToWorld(v.positionOS);
-                o.positionHCS = TransformObjectToHClip(v.positionOS);
+                o.worldPos = TransformObjectToWorld(i.positionOS);
+                o.positionHCS = TransformObjectToHClip(i.positionOS);
                 return o;
             }
 

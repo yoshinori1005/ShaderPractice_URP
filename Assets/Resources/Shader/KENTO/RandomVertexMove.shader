@@ -44,14 +44,14 @@ Shader "Unlit/RandomVertexMove"
                 return frac(sin(dot(co.xy, float2(12.9898, 78.233))) * 43758.5453);
             }
 
-            Varyings vert (Attributes v)
+            Varyings vert (Attributes i)
             {
                 Varyings o;
                 // ランダムな値生成
-                float random = rand(v.positionOS.xy);
+                float random = rand(i.positionOS.xy);
                 /*ランダムな値をsin関数の引数に渡して経過時間を
                 掛け合わせることで各頂点にランダムな変化を与える*/
-                float3 vert = float3(v.positionOS.xyz + v.positionOS.xyz * sin(1 + _Time.w * _MoveSpeed * random) * _VertexMoveRange);
+                float3 vert = float3(i.positionOS.xyz + i.positionOS.xyz * sin(1 + _Time.w * _MoveSpeed * random) * _VertexMoveRange);
                 o.positionHCS = TransformObjectToHClip(vert);
                 return o;
             }

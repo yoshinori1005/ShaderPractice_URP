@@ -38,11 +38,11 @@ Shader "Unlit/SliceLocalPos"
                 float3 localPos : TEXCOORD1;
             };
 
-            Varyings vert (Attributes v)
+            Varyings vert (Attributes i)
             {
                 Varyings o;
-                o.localPos = v.positionOS.xyz;
-                o.positionHCS = TransformObjectToHClip(v.positionOS.xyz);
+                o.localPos = i.positionOS.xyz;
+                o.positionHCS = TransformObjectToHClip(i.positionOS.xyz);
                 return o;
             }
 

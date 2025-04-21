@@ -45,11 +45,11 @@ Shader "Unlit/GradationSky"
                 float3 worldPos : TEXCOORD0;
             };
 
-            Varyings vert (Attributes v)
+            Varyings vert (Attributes i)
             {
                 Varyings o;
-                o.worldPos = TransformObjectToWorld(v.positionOS.xyz);
-                o.positionHCS = TransformObjectToHClip(v.positionOS.xyz);
+                o.worldPos = TransformObjectToWorld(i.positionOS.xyz);
+                o.positionHCS = TransformObjectToHClip(i.positionOS.xyz);
                 return o;
             }
 

@@ -27,11 +27,11 @@ Shader "Unlit/Shader02"
                 float4 positionHCS : SV_POSITION;
             };
 
-            Varyings vert (Attributes v)
+            Varyings vert (Attributes i)
             {
                 Varyings o;
                 // メッシュの頂点座標を 0.75 倍 → 縮小
-                float4 vert = v.positionOS * 0.75;
+                float4 vert = i.positionOS * 0.75;
                 o.positionHCS = TransformObjectToHClip(vert.xyz);
                 return o;
             }

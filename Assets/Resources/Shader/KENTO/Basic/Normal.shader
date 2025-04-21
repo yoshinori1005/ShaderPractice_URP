@@ -29,13 +29,13 @@ Shader "Unlit/Normal"
                 float3 normalWS : NORMAL;
             };
 
-            Varyings vert (Attributes v)
+            Varyings vert (Attributes i)
             {
                 Varyings o;
-                o.positionHCS = TransformObjectToHClip(v.positionOS);
+                o.positionHCS = TransformObjectToHClip(i.positionOS);
                 // ローカル座標系の法線
                 // o.normalWS = v.normalOS;
-                o.normalWS = TransformObjectToWorldNormal(v.normalOS);
+                o.normalWS = TransformObjectToWorldNormal(i.normalOS);
                 return o;
             }
 

@@ -4,6 +4,7 @@ Shader "Unlit/Diffuse"
     {
         [MainColor] _BaseColor("Base Color", Color) = (1, 1, 1, 1)
         _DiffuseShade("Diffuse Shade", Range(0, 1)) = 0.5
+        _AmbientColor("Ambient Color", Color) = (0.5, 0.5, 0.5, 1)
     }
     SubShader
     {
@@ -21,13 +22,12 @@ Shader "Unlit/Diffuse"
             HLSLPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-            #pragma multi_compile _ LIGHTMAP_ON
 
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 
             CBUFFER_START(UnityPerMaterial)
-            float4 _BaseColor;
+            float4 _BaseColor, _AmbientColor;
             float _DiffuseShade;
             CBUFFER_END
 
@@ -42,17 +42,16 @@ Shader "Unlit/Diffuse"
                 float4 positionHCS : SV_POSITION;
                 float3 normalWS : NORMAL;
                 // 環境光
-                float3 ambientWS : TEXCOORD0;
+                float3 ambientWS : TEXCOORD1;
             };
 
-            Varyings vert (Attributes v)
+            Varyings vert (Attributes i)
             {
                 Varyings o;
-                o.positionHCS = TransformObjectToHClip(v.positionOS);
+                o.positionHCS = TransformObjectToHClip(i.positionOS);
                 // o.normalWS = TransformObjectToWorldNormal(v.normalOS);
-                VertexNormalInputs normalInputs = GetVertexNormalInputs(v.normalOS);
+                VertexNormalInputs normalInputs = GetVertexNormalInputs(i.normalOS);
                 o.normalWS = normalInputs.normalWS;
-                o.ambientWS = SampleSHVertex(float4(o.normalWS, 1));
                 return o;
             }
 
@@ -68,7 +67,7 @@ Shader "Unlit/Diffuse"
                 float4 diffuseColor = max(0, dot(N, L) * _DiffuseShade + (1 - _DiffuseShade));
 
                 // 色を乗算
-                float4 finalColor = _BaseColor * diffuseColor * float4(GetMainLight().color, 1) * float4(i.ambientWS, 1);
+                float4 finalColor = _BaseColor * diffuseColor * float4(GetMainLight().color, 1) * _AmbientColor;
 
                 return finalColor;
             }

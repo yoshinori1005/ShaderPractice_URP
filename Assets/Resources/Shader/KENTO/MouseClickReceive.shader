@@ -32,11 +32,11 @@ Shader "Unlit/MouseClickReceive"
                 float3 worldPos : TEXCOORD0;
             };
 
-            Varyings vert (Attributes v)
+            Varyings vert (Attributes i)
             {
                 Varyings o;
-                o.positionHCS = TransformObjectToHClip(v.positionOS.xyz);
-                o.worldPos = mul(unity_ObjectToWorld, v.positionOS).xyz;
+                o.positionHCS = TransformObjectToHClip(i.positionOS.xyz);
+                o.worldPos = TransformObjectToWorld(i.positionOS.xyz);
                 return o;
             }
 

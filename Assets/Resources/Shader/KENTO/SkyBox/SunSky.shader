@@ -49,13 +49,13 @@ Shader "Unlit/SunSky"
                 float3 dirWS : TEXCOORD0;
             };
 
-            Varyings vert (Attributes v)
+            Varyings vert (Attributes i)
             {
                 Varyings o;
-                float3 posWS = TransformObjectToWorld(v.positionOS);
+                float3 posWS = TransformObjectToWorld(i.positionOS);
                 // カメラからの方向ベクトル
                 o.dirWS = normalize(posWS - GetCameraPositionWS());
-                o.positionHCS = TransformObjectToHClip(v.positionOS.xyz);
+                o.positionHCS = TransformObjectToHClip(i.positionOS.xyz);
                 return o;
             }
 

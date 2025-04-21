@@ -82,12 +82,12 @@ Shader "Unlit/Tessellation"
                 float2 uv : TEXCOORD0;
             };
 
-            HsInput vert (Attributes v)
+            HsInput vert (Attributes i)
             {
                 HsInput o;
-                o.positionOS = v.positionOS;
-                o.normalOS = v.normalOS;
-                o.uv = v.uv;
+                o.positionOS = i.positionOS;
+                o.normalOS = i.normalOS;
+                o.uv = i.uv;
                 return o;
             }
 

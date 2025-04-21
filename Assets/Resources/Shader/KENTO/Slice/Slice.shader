@@ -36,14 +36,14 @@ Shader "Unlit/Slice"
             struct Varyings
             {
                 float4 positionHCS : SV_POSITION;
-                float3 worldPos : WORLD_POS;
+                float3 worldPos : TEXCOORD0;
             };
 
-            Varyings vert (Attributes v)
+            Varyings vert (Attributes i)
             {
                 Varyings o;
-                o.worldPos = mul(unity_ObjectToWorld, v.positionOS).xyz;
-                o.positionHCS = TransformObjectToHClip(v.positionOS.xyz);
+                o.worldPos = TransformObjectToWorld(i.positionOS.xyz);
+                o.positionHCS = TransformObjectToHClip(i.positionOS.xyz);
                 return o;
             }
 

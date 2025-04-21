@@ -29,11 +29,11 @@ Shader "Unlit/Shader03"
                 float4 color : COLOR;
             };
 
-            Varyings vert (Attributes v)
+            Varyings vert (Attributes i)
             {
                 Varyings o;
-                o.positionHCS = TransformObjectToHClip(v.positionOS.xyz);
-                o.color = v.color;
+                o.positionHCS = TransformObjectToHClip(i.positionOS.xyz);
+                o.color = i.color;
                 return o;
             }
 

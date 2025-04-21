@@ -43,12 +43,12 @@ Shader "Unlit/UVRotation"
                 float2 uv : TEXCOORD0;
             };
 
-            Varyings vert (Attrivutes v)
+            Varyings vert (Attrivutes i)
             {
                 Varyings o;
-                o.positionHCS = TransformObjectToHClip(v.positionOS.xyz);
+                o.positionHCS = TransformObjectToHClip(i.positionOS.xyz);
                 // 受け取った UV 座標をフラグメントシェーダーに渡す
-                o.uv = v.uv;
+                o.uv = i.uv;
                 return o;
             }
 

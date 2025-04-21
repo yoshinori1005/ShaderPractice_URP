@@ -56,11 +56,11 @@ Shader "Unlit/NightSkyWithMoon"
                 return - 1.0 + 2.0 * frac(sin(st) * 43758.5453123);
             }
 
-            Varyings vert (Attributes v)
+            Varyings vert (Attributes i)
             {
                 Varyings o;
-                o.worldPos = TransformObjectToWorld(v.positionOS.xyz);
-                o.positionHCS = TransformObjectToHClip(v.positionOS.xyz);
+                o.worldPos = TransformObjectToWorld(i.positionOS.xyz);
+                o.positionHCS = TransformObjectToHClip(i.positionOS.xyz);
                 return o;
             }
 

@@ -46,12 +46,12 @@ Shader "Unlit/MaskRotation"
                 float2 uv1 : TEXCOORD1;
             };
 
-            Varyings vert (Attributes v)
+            Varyings vert (Attributes i)
             {
                 Varyings o;
-                o.positionHCS = TransformObjectToHClip(v.positionOS.xyz);
-                o.uv = v.uv;
-                o.uv1 = v.uv1;
+                o.positionHCS = TransformObjectToHClip(i.positionOS.xyz);
+                o.uv = i.uv;
+                o.uv1 = i.uv1;
                 return o;
             }
 

@@ -43,11 +43,11 @@ Shader "Unlit/StripeScroll"
                 float2 uv : TEXCOORD0;
             };
 
-            Varyings vert (Attributes v)
+            Varyings vert (Attributes i)
             {
                 Varyings o;
-                o.uv = v.uv + _Time.y * _ScrollSpeed;
-                o.positionHCS = TransformObjectToHClip(v.positionOS.xyz);
+                o.uv = i.uv + _Time.y * _ScrollSpeed;
+                o.positionHCS = TransformObjectToHClip(i.positionOS.xyz);
                 return o;
             }
 

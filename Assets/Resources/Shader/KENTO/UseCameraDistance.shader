@@ -42,12 +42,12 @@ Shader "Unlit/UseCameraDistance"
                 float3 worldPos : TEXCOORD1;
             };
 
-            Varyings vert (Attributes v)
+            Varyings vert (Attributes i)
             {
                 Varyings o;
-                o.positionHCS = TransformObjectToHClip(v.positionOS.xyz);
-                o.uv = v.uv;
-                o.worldPos = mul(unity_ObjectToWorld, v.positionOS).xyz;
+                o.positionHCS = TransformObjectToHClip(i.positionOS.xyz);
+                o.uv = i.uv;
+                o.worldPos = TransformObjectToWorld(i.positionOS.xyz);
                 return o;
             }
 

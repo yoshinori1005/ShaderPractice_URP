@@ -42,11 +42,11 @@ Shader "Unlit/SimpleDiffuse"
                 float3 normalWS : TEXCOORD0;
             };
 
-            Varyings vert (Attributes v)
+            Varyings vert (Attributes i)
             {
                 Varyings o;
-                o.positionHCS = TransformObjectToHClip(v.positionOS);
-                o.normalWS = TransformObjectToWorldNormal(v.normalOS);
+                o.positionHCS = TransformObjectToHClip(i.positionOS);
+                o.normalWS = TransformObjectToWorldNormal(i.normalOS);
                 return o;
             }
 

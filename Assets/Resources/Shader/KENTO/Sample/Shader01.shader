@@ -33,13 +33,13 @@ Shader "Unlit/Shader01"
             };
 
             // 頂点シェーダー
-            Varyings vert (Attrivutes v)
+            Varyings vert (Attrivutes i)
             {
                 // データ型が v2f から Varyings へ
                 Varyings o;
                 // UnityObjectToClip から TransformObjectToHClip へ
                 // オブジェクト空間からスクリーン空間への変換
-                o.positionHCS = TransformObjectToHClip(v.positionOS.xyz);
+                o.positionHCS = TransformObjectToHClip(i.positionOS.xyz);
                 return o;
             }
 

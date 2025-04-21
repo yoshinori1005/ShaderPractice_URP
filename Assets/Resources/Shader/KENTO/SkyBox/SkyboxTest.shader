@@ -40,11 +40,11 @@ Shader "Unlit/SkyboxTest"
                 float3 worldPos : WORLD_POS;
             };
 
-            Varyings vert (Attributes v)
+            Varyings vert (Attributes i)
             {
                 Varyings o;
-                o.worldPos = mul(unity_ObjectToWorld, v.positionOS).xyz;
-                o.positionHCS = TransformObjectToHClip(v.positionOS.xyz);
+                o.worldPos = mul(unity_ObjectToWorld, i.positionOS).xyz;
+                o.positionHCS = TransformObjectToHClip(i.positionOS.xyz);
                 return o;
             }
 

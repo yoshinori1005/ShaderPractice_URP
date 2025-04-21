@@ -39,11 +39,11 @@ Shader "Unlit/TextureMask"
                 float2 uv : TEXCOORD0;
             };
 
-            Varyings vert (Attributes v)
+            Varyings vert (Attributes i)
             {
                 Varyings o;
-                o.positionHCS = TransformObjectToHClip(v.positionOS.xyz);
-                o.uv = v.uv;
+                o.positionHCS = TransformObjectToHClip(i.positionOS.xyz);
+                o.uv = i.uv;
                 return o;
             }
 
