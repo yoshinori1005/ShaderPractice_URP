@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.GameCenter;
 
 public class DrawMeshInstancing : MonoBehaviour
 {
